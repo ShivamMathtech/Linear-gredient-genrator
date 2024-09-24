@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Linear Gradient with CSS Code</title>
+    <style>
+      body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        cursor: pointer;
+      }
+      #cssCode {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-family: monospace;
+        white-space: pre-wrap;
+        border-radius: 5px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Click the button to change the background gradient</h1>
+      <button onclick="generateRandomGradient()">Generate Gradient</button>
+      <button onclick="getCssCode()">Get CSS</button>
+    </div>
+
+    <div id="cssCode"></div>
+
+    <script>
+      let currentGradient = "";
+
+      function getRandomColor() {
+        // Generate a random color in hex format
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+
+      function generateRandomGradient() {
+        // Get two random colors
+        const color1 = getRandomColor();
+        const color2 = getRandomColor();
+        // Generate a random angle between 0 and 360 degrees
+        const angle = Math.floor(Math.random() * 361);
+        // Create the linear gradient string
+        currentGradient = `linear-gradient(${angle}deg, ${color1}, ${color2})`;
+        // Set the linear gradient as the background
+        document.body.style.background = currentGradient;
+        // Hide the CSS code container when generating a new gradient
+        document.getElementById("cssCode").style.display = "none";
+      }
+
+      function getCssCode() {
+        const cssCodeElement = document.getElementById("cssCode");
+        // Display the current gradient's CSS code
+        cssCodeElement.textContent = `background: ${currentGradient};`;
+        cssCodeElement.style.display = "block";
+      }
+
+      // Call the function to generate a gradient on page load
+      window.onload = generateRandomGradient;
+      // Developed by shiva singh
+    </script>
+  </body>
+</html>
